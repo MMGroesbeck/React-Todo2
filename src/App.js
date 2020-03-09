@@ -1,6 +1,7 @@
 import React from 'react';
 import ToDoForm from "./components/TodoForm";
 import ToDoList from "./components/TodoList";
+import SearchForm from "./components/SearchForm";
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -9,11 +10,17 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      toDoList: localStorage.getItem("toDoList") ? JSON.parse(localStorage.getItem("toDoList")) : []
+      toDoList: localStorage.getItem("toDoList") ? JSON.parse(localStorage.getItem("toDoList")) : [],
+      filterStr: ""
     }
   }
   saveList = () => {
     localStorage.setItem("toDoList", JSON.stringify(this.state.toDoList));
+  }
+  getFilter = (str) => {
+    this.setState({
+      filterStr: str
+    })
   }
   addToDo = (task) => {
     this.setState({
@@ -45,7 +52,8 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <ToDoList items={this.state.toDoList} toggleDone={this.toggleDone}/>
+        <SearchForm getFilter={this.getFilter}/>
+        <ToDoList items={this.state.toDoList.filter(item=>item.task.includes(this.state.filterStr))} toggleDone={this.toggleDone}/>
         <ToDoForm addToDo={this.addToDo} clearDone={this.clearDone}/>
       </div>
     );
