@@ -9,17 +9,19 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      toDoList: []
+      toDoList: localStorage.getItem("toDoList") ? JSON.parse(localStorage.getItem("toDoList")) : []
     }
+  }
+  saveList = () => {
+    localStorage.setItem("toDoList", JSON.stringify(this.state.toDoList));
   }
   addToDo = (task) => {
     this.setState({
       toDoList: [...this.state.toDoList, {task: task, id: Date.now(), completed: false}]
-    })
-    console.log(this.state);
+    });
+    this.saveList();
   }
   toggleDone = (taskId) => {
-    console.log("Toggling, ID: ", taskId);
     this.setState({
       toDoList: this.state.toDoList.map(task => {
         if (task.id === taskId) {
@@ -28,14 +30,16 @@ class App extends React.Component {
           return task;
         }
       })
-    })
+    });
+    this.saveList();
   }
   clearDone = () => {
     this.setState({
       toDoList: this.state.toDoList.filter(task => {
         return (!task.completed);
       })
-    })
+    });
+    this.saveList();
   }
   render() {
     return (
