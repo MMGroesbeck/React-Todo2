@@ -51,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
+        <h2>Things I should have done already:</h2>
         <SearchForm getFilter={this.getFilter}/>
         <ToDoList items={this.state.toDoList.filter(item=>item.task.toLowerCase().includes(this.state.filterStr.toLowerCase()))} toggleDone={this.toggleDone}/>
         <ToDoForm addToDo={this.addToDo} clearDone={this.clearDone}/>
