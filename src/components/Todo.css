@@ -1,3 +1,22 @@
 .done {
     text-decoration: line-through;
 }
+
+.task {
+    color: blue;
+}
+
+.wholelist {
+    max-width: 50%;
+    background-image: radial-gradient(white, seashell, mistyrose);
+    border: 1px solid mistyrose;
+    padding: 5%;
+    margin: 5%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+ul {
+    width: 80%;
+}

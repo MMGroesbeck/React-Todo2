@@ -2,6 +2,7 @@ import React from 'react';
 import ToDoForm from "./components/TodoForm";
 import ToDoList from "./components/TodoList";
 import SearchForm from "./components/SearchForm";
+import "./components/Todo.css";
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -50,7 +51,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="wholelist">
         <h2>Things I should have done already:</h2>
         <SearchForm getFilter={this.getFilter}/>
         <ToDoList items={this.state.toDoList.filter(item=>item.task.toLowerCase().includes(this.state.filterStr.toLowerCase()))} toggleDone={this.toggleDone}/>

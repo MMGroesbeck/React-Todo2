@@ -3,7 +3,7 @@ import "./Todo.css";
 
 const ToDo = props => {
     return (
-        <div onClick={()=>props.toggleDone(props.task.id)} className={props.task.completed ? "done" : ""}>
+        <div onClick={()=>props.toggleDone(props.task.id)} className={`task ${props.task.completed ? "done" : ""}`}>
             <p>{props.task.task}</p>
         </div>
     )
