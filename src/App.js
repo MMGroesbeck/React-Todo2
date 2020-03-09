@@ -53,7 +53,7 @@ class App extends React.Component {
       <div>
         <h2>Welcome to your Todo App!</h2>
         <SearchForm getFilter={this.getFilter}/>
-        <ToDoList items={this.state.toDoList.filter(item=>item.task.includes(this.state.filterStr))} toggleDone={this.toggleDone}/>
+        <ToDoList items={this.state.toDoList.filter(item=>item.task.toLowerCase().includes(this.state.filterStr.toLowerCase()))} toggleDone={this.toggleDone}/>
         <ToDoForm addToDo={this.addToDo} clearDone={this.clearDone}/>
       </div>
     );
